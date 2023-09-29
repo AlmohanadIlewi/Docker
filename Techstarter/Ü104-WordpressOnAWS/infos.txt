@@ -1,0 +1,100 @@
+
+1-
+ubuntu@ip-10-0-15-172:~$ docker ps
+Command 'docker' not found, but can be installed with:
+sudo snap install docker         # version 20.10.24, or
+sudo apt  install podman-docker  # version 3.4.4+ds1-1ubuntu1.22.04.2
+sudo apt  install docker.io      # version 24.0.5-0ubuntu1~22.04.1
+See 'snap info docker' for additional versions.
+ubuntu@ip-10-0-15-172:~$ 
+
+2- sudo apt update
+-3 Docker installieren On AWS Instance
+
+ubuntu@ip-10-0-15-172:~$ sudo apt  install docker.io
+
+4- Docker Compose installieren
+sudo apt install docker-compose
+ubuntu@ip-10-0-15-172:~$ sudo apt install docker-compose
+
+5- MySQL-Container erstellen:
+Verwende Docker, um einen MySQL-Container zu erstellen.
+Lege die Datenbank und Benutzer fest.
+
+WordPress-Container erstellen:
+Erstelle einen WordPress-Container und verbinde ihn mit dem MySQL-Container.
+MySQL- und WordPress-Container mit Docker Compose erstellen:
+Erstelle eine docker-compose.yml Datei:
+
+ubuntu@ip-10-0-15-172:~$ sudo nano docker-compose.yml
+
+version: '3'
+
+services:
+   db:
+     image: mysql:5.7
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: wp_pass
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wp_user
+       MYSQL_PASSWORD: wp_user_pass
+
+   wordpress:
+     depends_on:
+       - db
+     image: wordpress:latest
+     ports:
+       - "80:80"
+     restart: always
+     environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: wp_user
+       WORDPRESS_DB_PASSWORD: wp_user_pass
+       WORDPRESS_DB_NAME: wordpress
+
+volumes:
+    db_data: {}
+
+ubuntu@ip-10-0-15-172:~$ sudo apt update
+ubuntu@ip-10-0-15-172:~$ sudo apt install nginx
+ubuntu@ip-10-0-15-172:~$ sudo nano docker-compose.yml
+ubuntu@ip-10-0-15-172:~$ sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
+ubuntu@ip-10-0-15-172:~$ 
+ubuntu@ip-10-0-15-172:~$ sudo nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+ubuntu@ip-10-0-15-172:~$ 
+
+sudo apt install apache2-utils
+
+ubuntu@ip-10-0-15-172:~$ sudo htpasswd -c /etc/nginx/.htpasswd mohanad
+New password: 
+Re-type new password: 
+Adding password for user mohanad
+ubuntu@ip-10-0-15-172:~$  sudo systemctl stop nginx
+ubuntu@ip-10-0-15-172:~$ sudo systemctl restart nginx
+Job for nginx.service failed because the control process exited with error code.
+See "systemctl status nginx.service" and "journalctl -xeu nginx.service" for details.
+ubuntu@ip-10-0-15-172:~$ sudo docker-compose up -d
+ubuntu_db_1 is up-to-date
+Recreating ubuntu_wordpress_1 ... done
+ubuntu@ip-10-0-15-172:~$ sudo systemctl stop nginx
+ubuntu@ip-10-0-15-172:~$ sudo systemctl restart nginx
+ubuntu@ip-10-0-15-172:~$ 
+ubuntu@ip-10-0-15-172:~$ sudo docker ps
+CONTAINER ID   IMAGE              COMMAND                  CREATED          STATUS          PORTS                               NAMES
+667a5db6df25   wordpress:latest   "docker-entrypoint.s…"   8 minutes ago    Up 8 minutes    0.0.0.0:80->80/tcp, :::80->80/tcp   ubuntu_wordpress_1
+b83e9be92f76   mysql:5.7          "docker-entrypoint.s…"   11 minutes ago   Up 11 minutes   3306/tcp, 33060/tcp                 ubuntu_db_1
+ubuntu@ip-10-0-15-172:~$ sudo nano /etc/nginx/sites-available/wordpress
+ubuntu@ip-10-0-15-172:~$ sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
+sed.
+
+ubuntu@ip-10-0-15-172:~$ sudo docker ps
+CONTAINER ID   IMAGE              COMMAND                  CREATED              STATUS          PORTS                                   NAMES
+7d3ff8e9ce24   wordpress:latest   "docker-entrypoint.s…"   About a minute ago   Up 59 seconds   0.0.0.0:8080->80/tcp, :::8080->80/tcp   ubuntu_wordpress_1
+b83e9be92f76   mysql:5.7          "docker-entrypoint.s…"   18 minutes ago       Up 18 minutes   3306/tcp, 33060/tcp                     ubuntu_db_1
+ubuntu@ip-10-0-15-172:~$
+sudo systemctl status nginx.service
