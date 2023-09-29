@@ -1,0 +1,33 @@
+version: '3'
+services:
+  api:
+    image: node:18
+    container_name: api-service
+    working_dir: /usr/src/app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - MYSQL_HOST=database
+      - MYSQL_USER=example-user
+      - MYSQL_PASSWORD=my_cool_secret
+      - MYSQL_DATABASE=restaurants
+    depends_on:
+      - database
+
+  database:
+    image: mysql:latest
+    container_name: mysql-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=my_secret_root_password
+      - MYSQL_DATABASE=restaurants
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
+
+networks:
+  app_net:
+    driver: bridge
