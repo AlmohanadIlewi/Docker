@@ -1,0 +1,69 @@
+# Eine Datei im Powershell zu erstellen 
+mit dem Befehl New-Item -ItemType File -Name "infos.txt"
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Practical-Course\L3-Setup NodeJS Application> New-Item -ItemType File -Name "infos.txt"
+
+
+# erstellen NodeJS Application
+wird verwerdet den Befeh zu erstellen NodeJS Application ( npm init )
+
+Enter يقوم بطرح عدة أسئلة إفتراضية و نحن إذا لم ترد أن نغير شيء بكل بساطة نضغط على زر الـ 
+ Package.json و بعدها يظهر لدنيا ملف الـ 
+ 
+ jetzt können wir unsere Application erstellen
+ الآن يمكننا إنشاء تطبيقنا
+ PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Practical-Course\L3-Setup NodeJS Application\node-app> New-Item -ItemType File -Name "index.js" 
+
+Express Server بالنسبة للتطبيق الخاص بنا يجب بناء ما يسمى 
+ Request من أجل أن نستقبل عليه طلبات 
+Express Install نستخدم الـ  NodeJS و هنا في الـ 
+Dependency أول شيء نحتاجه هو تنزيل الـ 
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Practical-Course\L3-Setup NodeJS Application\node-app> npm install express
+
+Unserer Server بعدها نستطيع أن ننشا الـ 
+Application نقوم بكتابة الكود أي الـ 
+
+ Port يجب أن يعمل على منفذ معين Application عند تشتغيل الـ
+ const PORT = 4000; z.B 
+
+   4000 بعدها يجب تشغيل السرفر الخاص بنا على هذا المنفذ
+ 
+   Simple Route حتى نعرف أن السرفر يعمل أو لا نقوم بإنشاء 
+   app.get
+
+   npm install nodemon --save-dev 
+   verwendet, um Nodemon als Entwicklungswerkzeug in Ihrem Node.js-Projekt zu installieren
+   und es gleichzeitig als devDependency in der package.json-Datei zu speichern
+   
+   PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Practical-Course\L3-Setup NodeJS Application\node-app> npm install nodemon --save-dev
+
+   wird eine Package in der Package.json hinzugefügt :
+
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+  und  wir Müssennoch ein Skript in der package.json hinzufügen, damit wir den Server nicht jedes Mal neu starten müssen?"
+
+   "scripts": {
+    "start": "node index.js",
+    "start-dev": "nodemon index.js" "Wenn es Änderungen gibt, startet der Server automatisch neu."
+    
+  },
+
+  npm run start-dev danach verwenden wir den Befehl
+  PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Practical-Course\L3-Setup NodeJS Application\node-app> npm run start-dev
+
+> app@1.0.0 start-dev
+> nodemon index.js
+
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node index.js`
+app is up and running on port: 4000
+
+# Docker
+zuerst erstellen wir eine Datei heißt Dickerfile
+
+New-Item -ItemType File -Name "Dockerfile"    das ist der nächste Unterricht
