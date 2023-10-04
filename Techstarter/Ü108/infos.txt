@@ -1,0 +1,108 @@
+
+Initialisieren von Docker Swarm:
+1- Starten Sie Docker Swarm auf Ihrem Computer
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm> docker swarm  init
+Swarm initialized: current node (jupog6imjukh9jhwz33ydnkg1) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+docker swarm join --token SWMTKN-1-4vk3j7s64dw3b3ro2k4prg002ew7cye3w1dhha5w71z2t445v2-a664086wvxmbuvmjysmrhrgmy 192.168.65.3:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+2- Verwenden Sie docker node ls, um alle Nodes anzuzeigen
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm> docker node ls    
+ID                            HOSTNAME         STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+jupog6imjukh9jhwz33ydnkg1 *   docker-desktop   Ready     Active         Leader           24.0.6
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm> 
+
+
+
+3- PHP-Webserver mit Docker Swarm
+Erstellen Sie eine Datei namens index.php und fügen Sie einen beliebigen, einfachen code hinzu
+Erstellen Sie ein Dockerfile für das PHP-Projekt. 
+
+
+index.php    ---- 1
+
+#
+
+<?php
+// Setzen Sie die gewünschte Zeitzone (z.B. Berlin)
+date_default_timezone_set('Europe/Berlin');
+
+// Aktuelles Datum und Uhrzeit ermitteln
+$aktuelleZeit = date("Y-m-d H:i:s");
+
+// Ausgabe des aktuellen Datums und der Uhrzeit
+echo "Aktuelles Datum und Uhrzeit: $aktuelleZeit";
+?>
+
+
+#
+
+Dockerfile:
+
+/* 
+# Verwenden Sie das offizielle PHP 7.4 Apache-Image als Basisimage
+FROM php:7.4-apache
+
+# Installieren Sie das Zeitzone-Datenbankpaket
+RUN apt-get update && apt-get install -y tzdata
+
+# Setzen Sie die Zeitzone im Container auf Ihre Zeitzone (z.B., Berlin)
+RUN ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+
+# Kopieren Sie die index.php-Datei in das Webverzeichnis des Containers
+COPY index.php /var/www/html/index.php
+
+
+*/
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm> New-Item -ItemType File -Name "index.php"         
+
+    Directory: C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          04.10.2023    13:24              0 index.php
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm> New-Item -ItemType File -Name "Dockerfile"
+
+4- Docker-Image bauen
+
+    Directory: C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          04.10.2023    13:25              0 Dockerfile
+
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm> docker build -t myphp-webserver .
+
+5- Starten Sie den PHP-Webserver mit Docker Swarm
+Erstellen Sie einen Service für das PHP-Projekt:
+
+docker service create --name php-web-service --publish 80:80 <ihr-image-name>
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm> docker service create --name php-web-service --publish 80:80 myphp-webserver 
+
+6- Überprüfen Sie den Status des Services und notieren Sie sich, auf welchem Node der
+Service läuft
+
+docker service ps php-web-service
+
+7- Skalieren und Aktualisieren des PHP-Webservers
+Service-Skalierung:
+● Skalieren Sie den php-web-service auf 3 Repliken und dokumentieren Sie den Prozess
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm> docker service scale php-web-service=3
+
+
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm> docker service ps php-web-service
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm> docker service update --image myphp-serviceimage php-web-service
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm> docker build -t myphp-serviceimage .

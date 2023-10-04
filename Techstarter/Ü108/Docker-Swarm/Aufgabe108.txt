@@ -1,0 +1,40 @@
+Docker Swarm und PHP-Webserver	
+
+Initialisieren von Docker Swarm:
+Starten Sie Docker Swarm auf Ihrem Computer (z.B. VS Code) mit 
+docker swarm  init
+
+Dokumentieren Sie alle erhaltenen Ausgaben
+Verwenden Sie docker node ls, um alle Nodes anzuzeigen
+
+PHP-Webserver mit Docker Swarm
+Erstellen Sie eine Datei namens index.php und fügen Sie einen beliebigen, einfachen code hinzu
+Erstellen Sie ein Dockerfile für das PHP-Projekt. 
+Hier ist ein einfacher Vorschlag:
+FROM php:7.4-apache 
+COPY . /var/www/html/
+
+Docker-Image bauen
+
+
+Starten Sie den PHP-Webserver mit Docker Swarm
+Erstellen Sie einen Service für das PHP-Projekt:
+
+docker service create --name php-web-service --publish 80:80 <ihr-image-name>
+
+Überprüfen Sie den Status des Services und notieren Sie sich, auf welchem Node der Service läuft
+
+Skalieren und Aktualisieren des PHP-Webservers
+
+Service-Skalierung:
+Skalieren Sie den php-web-service auf 3 Repliken und dokumentieren Sie den Prozess
+
+Aktualisieren des PHP-Codes:
+Ändern Sie in index.php die Willkommensnachricht.
+Bauen Sie das Docker-Image erneut und aktualisieren Sie den Docker Swarm Service, um das neue Image zu verwenden
+
+Aufräumen
+
+Entfernen von Services und Volumes:
+Löschen Sie alle erstellten Services und Volumes und dokumentieren Sie den Prozess
+Verlassen Sie den Docker Swarm.
