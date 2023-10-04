@@ -1,0 +1,208 @@
+
+# Erstellung
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü105-IP-API\ip-api-app> new-Item -ItemType File -Name "Dockerfile"
+
+    Directory: C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü105-IP-API\ip-api-app
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          02.10.2023    17:30              0 Dockerfile
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü105-IP-API\ip-api-app> npm install
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü105-IP-API\ip-api-app> docker build -t ip-api-app:latest . 
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü105-IP-API\ip-api-app> docker login   
+Authenticating with existing credentials...
+Login Succeeded
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü105-IP-API\ip-api-app> docker tag ip-api-app mohanadilewi/ip-api-app             
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü105-IP-API\ip-api-app> 
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü105-IP-API\ip-api-app> docker push mohanadilewi/ip-api-app
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü105-IP-API\ip-api-app> docker push mohanadilewi/ip-api-app
+Using default tag: latest
+The push refers to repository [docker.io/mohanadilewi/ip-api-app]
+a315a3db3110: Pushed
+5aab99bc6973: Mounted from library/nginx
+28acb3c3e587: Mounted from library/nginx
+027cb12faf5f: Mounted from library/nginx
+ff2df7f2f2c5: Mounted from library/nginx
+c7ee1d131436: Mounted from library/nginx
+58d11bc771d3: Mounted from library/nginx
+83869507973d: Mounted from library/nginx
+cc2447e1835a: Mounted from library/nginx
+latest: digest: sha256:bbaab164dcf8fd27744a8e12a85e3b6720a50eb355db1dd93a024a7041a2b838 size: 2201
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü105-IP-API\ip-api-app>
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü105-IP-API\ip-api-app> ssh -i "mysshkey1.pem" ubuntu@ec2-18-192-50-159.eu-central-1.compute.amazonaws.com
+
+
+ubuntu@ip-10-0-2-75:~$ sudo apt-get update
+
+ubuntu@ip-10-0-2-75:~$ sudo apt-get install docker.io
+
+ubuntu@ip-10-0-2-75:~$ sudo systemctl start docker
+
+docker pull <usernameHUB>/<imagename>
+
+
+Wiederholung:
+
+ubuntu@ip-10-0-2-75:~$ sudo systemctl start docker
+
+ Fügen Sie den Benutzer zur Docker-Gruppe hinzu:
+
+ubuntu@ip-10-0-2-75:~$ sudo usermod -aG docker ubuntu
+ubuntu@ip-10-0-2-75:~$ sudo systemctl start docker
+ubuntu@ip-10-0-2-75:~$ sudo docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: mohanadilewi
+Password: 
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+ubuntu@ip-10-0-2-75:~$ 
+ubuntu@ip-10-0-2-75:~$ sudo  docker pull mohanadilewi/ip-api-app
+Using default tag: latest
+latest: Pulling from mohanadilewi/ip-api-app
+96526aa774ef: Pull complete
+f2004135e416: Pull complete
+fbf1cf5026c4: Pull complete
+38966af6931d: Pull complete
+c3ee70732c61: Pull complete
+7e2fd992447a: Pull complete
+76cbc9ea6abf: Pull complete
+37f8bcf34db7: Pull complete
+e8e1dfd5723f: Pull complete
+Digest: sha256:bbaab164dcf8fd27744a8e12a85e3b6720a50eb355db1dd93a024a7041a2b838
+Status: Downloaded newer image for mohanadilewi/ip-api-app:latest
+docker.io/mohanadilewi/ip-api-app:latest
+ubuntu@ip-10-0-2-75:~$ 
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü105-IP-API\ip-api-app> docker run -p 80:80 -d mohanadilewi/ip-api-app
+a7c75567e552767cbfdd7884907819c2dbec6b40880b3c56a0e7ae68755cfbe6
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü105-IP-API\ip-api-app>
+
+
+
+
+ubuntu@ip-10-0-2-75:~$ sudo docker ps
+CONTAINER ID   IMAGE                     COMMAND                  CREATED         STATUS         PORTS                               NAMES
+6b260359c953   mohanadilewi/ip-api-app   "/docker-entrypoint.…"   6 minutes ago   Up 6 minutes   0.0.0.0:80->80/tcp, :::80->80/tcp   stoic_banzai
+ubuntu@ip-10-0-2-75:~$ sudo docker image ls
+REPOSITORY                TAG       IMAGE ID       CREATED       SIZE
+mohanadilewi/ip-api-app   latest    fb0af11a113b   4 hours ago   344MB
+ubuntu@ip-10-0-2-75:~$ 
+
+Restart Nginx: After stopping the Docker container:
+
+ubuntu@ip-10-0-2-75:~$ sudo service nginx restart
+ubuntu@ip-10-0-2-75:~$ sudo docker run -p 8080:80 -d mohanadilewi/ip-api-app
+36272b3ed580f87938042a8094b02f422facdbf08e48664f1b26894167fa7f06
+ubuntu@ip-10-0-2-75:~$ 
+
+
+Herausforderung
+
+Schritt 1: Installiere Nginx auf deiner EC2-Instanz
+ubuntu@ip-10-0-2-75:~$ sudo apt update
+ubuntu@ip-10-0-2-75:~$ sudo apt install nginx
+
+Schritt 2: Konfiguriere Nginx als Reverse Proxy
+sudo nano /etc/nginx/sites-available/ip-api-app
+
+Datei:
+server {
+    listen 80;
+    server_name 18.192.50.159; # Ersetze durch deine Domain oder die IP-Adresse der Instanz
+
+    location / {
+        proxy_pass http://localhost:8080; # Ändere den Port auf den Port deiner Docker-App
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+ubuntu@ip-10-0-2-75:~$ sudo ln -s /etc/nginx/sites-available/ip-api-app /etc/nginx/sites-enabled/
+
+Überprüfe die Nginx-Konfiguration auf Syntaxfehler:
+
+ubuntu@ip-10-0-2-75:~$ sudo nginx -t
+nginx: [warn] conflicting server name "18.192.50.159" on 0.0.0.0:80, ignored
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+Wenn die Konfiguration keine Fehler aufweist, starte oder aktualisiere Nginx:
+
+ubuntu@ip-10-0-2-75:~$ sudo service nginx restart
+ubuntu@ip-10-0-2-75:~$ 
+
+
+Schritt 3: Füge Basic Authentication hinzu
+
+Erstelle ein Passwort-Datei für Basic Authentication. Hier wird das Tool htpasswd verwendet:
+
+sudo apt install apache2-utils
+sudo htpasswd -c /etc/nginx/.htpasswd mohanadilewi
+
+ubuntu@ip-10-0-2-75:~$ sudo htpasswd -c /etc/nginx/.htpasswd mohanadilewi
+New password:
+Re-type new password:
+Adding password for user mohanadilewi
+ubuntu@ip-10-0-2-75:~$
+
+Aktualisiere deine Nginx-Konfiguration, um die Basic Authentication hinzuzufügen. 
+Füge die folgenden Zeilen in deiner Server-Konfiguration hinzu:
+
+location / {
+    auth_basic "Restricted Area";
+    auth_basic_user_file /etc/nginx/.htpasswd;
+    proxy_pass http://localhost:8080;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+}
+
+
+ubuntu@ip-10-0-2-75:~$ sudo nano /etc/nginx/sites-available/ip-api-app
+
+aktualisiere Datei:
+
+server {
+    listen 80;
+
+server_name 18.192.50.159;
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        auth_basic "Restricted Content";
+        auth_basic_user_file /etc/nginx/.htpasswd;
+
+    }
+   location /wp-admin/ {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+
+
+
+ubuntu@ip-10-0-2-75:~$ sudo nginx -t
+nginx: [warn] conflicting server name "18.192.50.159" on 0.0.0.0:80, ignored
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+ubuntu@ip-10-0-2-75:~$ sudo service nginx restart
+ubuntu@ip-10-0-2-75:~$ 
+
+
+To verify that Nginx is running:
+ubuntu@ip-10-0-2-75:~$ sudo service nginx status
