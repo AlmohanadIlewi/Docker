@@ -1,0 +1,30 @@
+# 1 Step
+Wir benötigen Dockerfile, um meine Anwendung zu dockerisieren
+  طلبي Dockerize لـ Dockerfile نحن بحاجة إلى 
+   Dockerization و أردت كتابة أو إنشاء له App أذا كان لدي 
+
+   Instructions هو ملف نقوم بكتابة بعض الـ
+     التي يختاجها التطبيقDependency أن هذا التطبيق يبدأ يعمل و ماهي الـ Docker لكي نقول للـ 
+ Run inside the Container و بالنهاية التطبيق الخاص بي يعمل اي Run و كيف نقوم بالـ 
+ Build و بعدها نعمل له Dockerfileنكتب الـ 
+ Container يقوم بإخراج لنا ما يسمى Docker لهذا الـ Run و نقوم بعمل 
+Output Docker is Container
+
+
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Practical-Course\L4-Dockerfile\node-app> docker build -t express-node-app .
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Practical-Course\L4-Dockerfile\node-app> docker image ls
+
+image name: express-node-app 
+
+Note
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Practical-Course\L4-Dockerfile\node-app> docker run --name my-app-container express-node-app
+
+> app@1.0.0 start /app
+> node index.js
+
+app is up and running on port: 4000
+
+docker run -d --name my-app-container express-node-app
+
+docker run -d --name my-app-container -p 8080:4000 express-node-app
