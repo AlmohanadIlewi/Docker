@@ -100,7 +100,6 @@ Service-Skalierung:
 PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm> docker service scale php-web-service=3
 
 
-
 PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm> docker service ps php-web-service
 
 PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Ü108\Docker-Swarm> docker service update --image myphp-serviceimage php-web-service
