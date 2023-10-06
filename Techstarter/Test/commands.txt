@@ -40,10 +40,7 @@ php-web-service3 scaled to 0
 overall progress: 0 out of 0 tasks
 verify: Service converged
 PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Test> docker ps
-PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Test> docker service scale php-web-service=0 
-php-web-service scaled to 0
-overall progress: 0 out of 0 tasks
-verify: Service converged
+
 PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Test> docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Test> 
