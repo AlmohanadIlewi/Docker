@@ -18,6 +18,15 @@ Hier ist ein Beispiel, wie Sie die Replikationsanzahl eines Dienstes auf 0 setze
 
 docker service scale <service_name>=0
 
+docker service scale php-web-service=0 
+
+docker service create --name php-web-service3 --publish 3000:80 myphp-image3    
+
+docker service create --name php-web-service(Anzahl) --publish  PORTS  <image-name>  
+
+
+docker service update --image myphp-serviceimage php-web-service 
+
 
 Beispiel:
 
