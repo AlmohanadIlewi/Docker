@@ -9,8 +9,8 @@ Der Befehl "npm init" wird verwendet, um eine Node.js-Anwendung (Application) zu
 Die Anwendung stellt standardmäßig mehrere voreingestellte Fragen, und wenn wir keine Änderungen vornehmen möchten, 
 drücken wir einfach die 'Enter'-Taste, danach wird die 'Package.json'-Datei erstellt.
  
- jetzt können wir unsere Application erstellen
- الآن يمكننا إنشاء تطبيقنا
+ "Jetzt können wir unsere Anwendung(Application) erstellen."
+
  PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Practical-Course\L3-Setup NodeJS Application\node-app> New-Item -ItemType File -Name "index.js" 
 
 "In Bezug auf unsere Anwendung müssen wir einen sogenannten Express-Server erstellen, um Anfragen(Request) darauf zu empfangen.
