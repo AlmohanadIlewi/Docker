@@ -1,0 +1,39 @@
+
+Wenn Sie einen Container in einem Docker Swarm-Cluster löschen,
+ wird dieser Container automatisch neu erstellt, 
+ sofern der Service im Swarm-Modus ausgeführt wird. 
+ Dies ist ein Teil des grundlegenden Verhaltens von Docker Swarm, um sicherzustellen, 
+ dass die gewünschte Anzahl von Replica-Containern immer aufrechterhalten wird, 
+ selbst wenn ein Container beendet oder gelöscht wird.
+
+
+Wenn Sie den Container mit der ID eb8e0bf82533 löschen, wird Docker Swarm diesen Container automatisch neu erstellen, 
+wenn der entsprechende Service in Ihrem Stack konfiguriert ist. 
+Dies geschieht, um sicherzustellen, dass die gewünschte Anzahl von Replicas aufrechterhalten wird und der Service hochverfügbar bleibt.
+
+Wenn Sie möchten, dass ein Container dauerhaft gestoppt und gelöscht bleibt, 
+ohne automatisch wiederhergestellt zu werden, müssen Sie die Service-Replikationsanzahl entsprechend reduzieren. 
+Hier ist ein Beispiel, wie Sie die Replikationsanzahl eines Dienstes auf 0 setzen können:
+
+
+docker service scale <service_name>=0
+
+
+Beispiel:
+
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Test> docker service scale php-web-service2=0
+php-web-service2 scaled to 0
+overall progress: 0 out of 0 tasks
+verify: Service converged
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Test> docker service scale php-web-service3=0
+php-web-service3 scaled to 0
+overall progress: 0 out of 0 tasks
+verify: Service converged
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Test> docker ps
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Test> docker service scale php-web-service=0 
+php-web-service scaled to 0
+overall progress: 0 out of 0 tasks
+verify: Service converged
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Test> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Techstarter\Test> 
