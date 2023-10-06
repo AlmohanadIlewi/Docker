@@ -3,37 +3,40 @@ mit dem Befehl New-Item -ItemType File -Name "infos.txt"
 PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Practical-Course\L3-Setup NodeJS Application> New-Item -ItemType File -Name "infos.txt"
 
 
-# erstellen NodeJS Application
-wird verwerdet den Befeh zu erstellen NodeJS Application ( npm init )
+# Erstellen NodeJS Application
+Der Befehl "npm init" wird verwendet, um eine Node.js-Anwendung (Application) zu erstellen.
 
-Enter يقوم بطرح عدة أسئلة إفتراضية و نحن إذا لم ترد أن نغير شيء بكل بساطة نضغط على زر الـ 
- Package.json و بعدها يظهر لدنيا ملف الـ 
+Die Anwendung stellt standardmäßig mehrere voreingestellte Fragen, und wenn wir keine Änderungen vornehmen möchten, 
+drücken wir einfach die 'Enter'-Taste, danach wird die 'Package.json'-Datei erstellt.
  
  jetzt können wir unsere Application erstellen
  الآن يمكننا إنشاء تطبيقنا
  PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Practical-Course\L3-Setup NodeJS Application\node-app> New-Item -ItemType File -Name "index.js" 
 
-Express Server بالنسبة للتطبيق الخاص بنا يجب بناء ما يسمى 
- Request من أجل أن نستقبل عليه طلبات 
-Express Install نستخدم الـ  NodeJS و هنا في الـ 
-Dependency أول شيء نحتاجه هو تنزيل الـ 
+"In Bezug auf unsere Anwendung müssen wir einen sogenannten Express-Server erstellen, um Anfragen(Request) darauf zu empfangen.
+Wenn wir Node.js verwenden, verwenden wir einen Express-Server, und um Express zu installieren, verwenden wir den Befehl 'npm install express'."
+
+"Das erste, was wir benötigen, ist das Herunterladen der Abhängigkeit (Dependency)."
 
 PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Practical-Course\L3-Setup NodeJS Application\node-app> npm install express
 
-Unserer Server بعدها نستطيع أن ننشا الـ 
-Application نقوم بكتابة الكود أي الـ 
+"Danach schreiben wir den Code für die Anwendung(Application) und können dann unseren Server erstellen."
 
- Port يجب أن يعمل على منفذ معين Application عند تشتغيل الـ
- const PORT = 4000; z.B 
+"Die Anwendung(Application) muss bei der Ausführung auf einem bestimmten Port arbeiten, z.B. const PORT = 4000;" 
 
-   4000 بعدها يجب تشغيل السرفر الخاص بنا على هذا المنفذ
- 
-   Simple Route حتى نعرف أن السرفر يعمل أو لا نقوم بإنشاء 
-   app.get
+   "Nachdem müssen wir unseren Server auf Port 4000 starten."
 
-   npm install nodemon --save-dev 
-   verwendet, um Nodemon als Entwicklungswerkzeug in Ihrem Node.js-Projekt zu installieren
-   und es gleichzeitig als devDependency in der package.json-Datei zu speichern
+"Um zu überprüfen, ob der Server funktioniert oder nicht, können wir Folgendes tun:" 
+ Simple Route (app.get) im Node.js
+   
+   
+Der Befehl 'npm install nodemon --save-dev' wird verwendet, um das Entwicklungstool Nodemon in Ihrem Node.js-Projekt zu installieren. 
+Nodemon ist ein hilfreiches Tool, das die automatische Neustartung Ihres Node.js-Servers ermöglicht, wenn Änderungen im Quellcode vorgenommen werden. 
+Dadurch wird die Entwicklungsarbeit effizienter, da Sie den Server nicht manuell neu starten müssen, wenn Sie Codeänderungen vornehmen.
+
+Die Option '--save-dev' bedeutet, dass Nodemon als Entwicklungsumgebung (devDependency) 
+in der 'package.json'-Datei Ihres Projekts gespeichert wird. 
+   
    
    PS C:\Users\Al Mohanad Ilewi\Desktop\Docker\Practical-Course\L3-Setup NodeJS Application\node-app> npm install nodemon --save-dev
 
@@ -45,8 +48,8 @@ Application نقوم بكتابة الكود أي الـ
   und  wir Müssennoch ein Skript in der package.json hinzufügen, damit wir den Server nicht jedes Mal neu starten müssen?"
 
    "scripts": {
-    "start": "node index.js",
-    "start-dev": "nodemon index.js" "Wenn es Änderungen gibt, startet der Server automatisch neu."
+    "start": "node index.js",        ......   Nach der Installation werden wir das hinzufügen
+    "start-dev": "nodemon index.js" "Wenn es Änderungen gibt, startet der Server automatisch neu."  ........   und das auch
     
   },
 
@@ -64,6 +67,8 @@ Application نقوم بكتابة الكود أي الـ
 app is up and running on port: 4000
 
 # Docker
-zuerst erstellen wir eine Datei heißt Dickerfile
+"Zuerst erstellen wir eine Datei namens 'Dockerfile'."
 
 New-Item -ItemType File -Name "Dockerfile"    das ist der nächste Unterricht
+
+........ "Im nächsten Unterricht folgt (L4-Dockerfile)."
