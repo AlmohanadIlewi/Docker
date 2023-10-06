@@ -1,3 +1,4 @@
+
 <?php
 // Beginn des PHP-Blocks
 ?>

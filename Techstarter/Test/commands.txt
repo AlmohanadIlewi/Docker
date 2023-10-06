@@ -7,6 +7,7 @@ Wenn Sie einen Container in einem Docker Swarm-Cluster löschen,
  selbst wenn ein Container beendet oder gelöscht wird.
 
 
+
 Wenn Sie den Container mit der ID eb8e0bf82533 löschen, wird Docker Swarm diesen Container automatisch neu erstellen, 
 wenn der entsprechende Service in Ihrem Stack konfiguriert ist. 
 Dies geschieht, um sicherzustellen, dass die gewünschte Anzahl von Replicas aufrechterhalten wird und der Service hochverfügbar bleibt.
